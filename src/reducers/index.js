@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import TimesheetReducer from './eager.reducer';
+import EagerReducer from './eager.reducer';
 
 const rootReducer = combineReducers({
-  sheets: TimesheetReducer
+  sheets: EagerReducer
 });
 
 export default rootReducer;
