@@ -5,7 +5,6 @@ import {store} from '../index';
 // Fetching specific record by id
 export function fetchEagerRecord(id) {
   const request = axios.get(`${ROOT_URL}/${id}`);
-
   request.then(({data}) => {
     return store.dispatch({type: FETCH_ONE_RECORD, payload: data});
   });
@@ -14,9 +13,7 @@ export function fetchEagerRecord(id) {
 // fetching all records
 export function fetchEagerData() {
   const request = axios.get(ROOT_URL);
-  return dispatch => {
-    request.then(({data}) => {
-      dispatch({type: FETCH_ALL_DATA, payload: data});
-    });
-  };
+  request.then(({data}) => {
+    return store.dispatch({type: FETCH_ALL_DATA, payload: data});
+  });
 }

@@ -7,7 +7,7 @@ import moment from 'moment';
 
 class DashboardIndex extends Component {
   componentDidMount() {
-    this.props.fetchEagerData();
+    fetchEagerData();
   }
 
   renderRows() {
@@ -67,7 +67,6 @@ class DashboardIndex extends Component {
 }
 
 DashboardIndex.propTypes = {
-  fetchEagerData: PropTypes.func,
   sheets: PropTypes.array
 };
 
