@@ -8,7 +8,7 @@ I took the first 100 entries from the 'submissionanalytics' table within 'eagert
 <br/>
 1. Clone the Repo from github
 <br/>
-2. cd into the root of application and install all the packages by running 'npm i' in terminal
+2. In the terminal, enter 'cd eagerToAssignment' to get into the root of application and install all the packages by running 'npm i'
 <br/>
 3. Run the application by entering 'npm start' in terminal
 <br/>
