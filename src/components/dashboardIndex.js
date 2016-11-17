@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {fetchEagerData} from '../actions/index.actions';
 import {browserHistory} from 'react-router';
 
-class DashboardChart extends Component {
+class DashboardIndex extends Component {
   componentDidMount() {
     fetchEagerData();
   }
@@ -75,7 +75,7 @@ class DashboardChart extends Component {
   }
 }
 
-DashboardChart.propTypes = {
+DashboardIndex.propTypes = {
   sheets: PropTypes.array
 };
 
@@ -85,4 +85,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {fetchEagerData})(DashboardChart);
+export default connect(mapStateToProps, {fetchEagerData})(DashboardIndex);

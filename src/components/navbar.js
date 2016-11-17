@@ -53,7 +53,7 @@ class NavBar extends Component {
     }
   }
 
-  // makes sure when user is looking at datailOverview that 
+  // makes sure when user is looking at datailOverview that
   // s/he can go to dashboard Index component by clicking on the home tab
   activeHome() {
     return browserHistory.push('/');
