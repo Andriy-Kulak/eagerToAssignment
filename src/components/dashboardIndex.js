@@ -1,72 +1,81 @@
+/* eslint react/jsx-boolean-value: 0 */
 import React, {Component, PropTypes} from 'react';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {connect} from 'react-redux';
 import {fetchEagerData} from '../actions/index.actions';
-import {Table, Grid, Col, Row, Panel, Button} from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap';
-import moment from 'moment';
+import {browserHistory} from 'react-router';
 
-class DashboardIndex extends Component {
+class DashboardChart extends Component {
   componentDidMount() {
     fetchEagerData();
   }
 
-  renderRows() {
-    return this.props.sheets.map(data => {
-      return (
-        <tr key={data.ID}>
-          <td><strong>{data.ID}</strong></td>
-          <td>{data.AGENT_NAME}</td>
-          <td>{data.BUSINESS_UNIT_NAME}</td>
-          <td>{data.UNDERWRITER_NAME}</td>
-          <td>{data.PROGRAM}</td>
-          <td>{data.INSURED_NAME}</td>
-          <td>{moment(data.RECEIVED_DATE).format('MM/DD/YYYY')}</td>
-          <td>
-            <LinkContainer to={{pathname: `/id/${data.ID}`}}>
-              <Button bsStyle="primary" bsSize="xsmall">Details...</Button>
-            </LinkContainer>
-          </td>
-        </tr>
-      );
-    });
+  onRowSelect(row) {
+    browserHistory.push(`/id/${row.ID}`);
   }
 
   render() {
-    const title = (
-      <h4 className="header-panel"><b>Underwriter Dashboard:</b> <i>All Entries</i></h4>
-    );
+    const selectRowProp = {
+      mode: 'radio',
+      onSelect: this.onRowSelect,
+      clickToSelect: true,
+      bgColor: 'rgb(204, 51, 119)'
+    };
 
     return (
-      <Grid>
-        <Row>
-          <Col md={12}>
-            <Panel header={title} bsStyle="info">
-              <Table responsive bordered condensed hover>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Agent Name</th>
-                    <th>Business Unit Name</th>
-                    <th>Underwriter Name</th>
-                    <th>Program</th>
-                    <th>Insured Name</th>
-                    <th>Received Date</th>
-                    <th>Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.renderRows()}
-                </tbody>
-              </Table>
-            </Panel>
-          </Col>
-        </Row>
-      </Grid>
+      <BootstrapTable
+        data={this.props.sheets}
+        hover={true}
+        condensed={true}
+        pagination={true}
+        search={true}
+        selectRow={selectRowProp}
+        exportCSV={true}
+        >
+        <TableHeaderColumn
+          width="50px"
+          dataField="ID"
+          isKey={true}
+          dataAlign="right"
+          >ID</TableHeaderColumn>
+        <TableHeaderColumn
+          width="400px"
+          dataField="AGENT_NAME"
+          dataSort={true}
+          filter={{type: 'TextFilter', placeholder: 'Search by Agent Name'}}
+          >Agent Name</TableHeaderColumn>
+        <TableHeaderColumn
+          width="70px" dataField="BUSINESS_UNIT_NAME"
+          dataAlign="center"
+          >Bus. Unit Name</TableHeaderColumn>
+        <TableHeaderColumn
+          width="100px"
+          dataField="UNDERWRITER_NAME"
+          dataSort={true}
+          >Underwriter Name</TableHeaderColumn>
+        <TableHeaderColumn
+          width="140px"
+          dataField="PROGRAM"
+          dataSort={true}
+          filter={{type: 'TextFilter', placeholder: 'Search by Program'}}
+          >Program</TableHeaderColumn>
+        <TableHeaderColumn
+          width="130px"
+          dataField="INSURED_NAME"
+          dataSort={true}
+          filter={{type: 'TextFilter', placeholder: 'Search by Insured Name'}}
+          >Insured Name</TableHeaderColumn>
+        <TableHeaderColumn
+          width="70px"
+          dataField="RECEIVED_DATE"
+          dataSort={true}
+          >Rec. Date</TableHeaderColumn>
+      </BootstrapTable>
     );
   }
 }
 
-DashboardIndex.propTypes = {
+DashboardChart.propTypes = {
   sheets: PropTypes.array
 };
 
@@ -76,4 +85,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {fetchEagerData})(DashboardIndex);
+export default connect(mapStateToProps, {fetchEagerData})(DashboardChart);
