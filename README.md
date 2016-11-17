@@ -1,4 +1,4 @@
-<h3><b>Eager.to Assignment</b></h3>
+<h3><b>UI Material VERSION  - Eager.to Assignment</b></h3>
 <br/>
 Main Technologies Used: React, Redux, React-Bootstrap and Node
 <br/>
