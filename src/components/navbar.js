@@ -5,7 +5,7 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Tabs from 'material-ui/Tabs/Tabs';
 import Tab from 'material-ui/Tabs/Tab';
-import {browserHistory, Link} from 'react-router';
+import {browserHistory} from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 class NavBar extends Component {
